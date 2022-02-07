@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react";
 import { Button, InputGroup } from "react-bootstrap";
 import { Form, FormControl } from "react-bootstrap";
-import HashTagInput from "../../components/HashTagInput";
+import HashTagList from "../../components/HashTagList";
 import logHoc from "../../hoc/logHoc";
 
 interface PresenterProps {
@@ -32,7 +32,7 @@ function Presenter(props: PresenterProps) {
       </Form.Group>
       <Form.Group className="mb-4">
         <Form.Label>태그</Form.Label>
-        <HashTagInput />
+        <HashTagList tagList={tagList} addTag={addTag} removeTag={removeTag} />
       </Form.Group>
       <Form.Group className="mb-4">
         <Form.Label>내용</Form.Label>

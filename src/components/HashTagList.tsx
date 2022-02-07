@@ -32,8 +32,14 @@ const Input = styled.input`
   height: inherit;
 `;
 
-function HashTagInput() {
-  const [tagList, setTagList] = useState<string[]>([]);
+interface TagListProps {
+  tagList: string[];
+  addTag: (tag: string) => void;
+  removeTag: (tag: string) => void;
+}
+
+function HashTagList(props: TagListProps) {
+  const { tagList, addTag, removeTag } = props;
   const [tagInput, setTagInput] = useState<string>("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -46,15 +52,16 @@ function HashTagInput() {
 
   const handleTagList = useCallback<KeyboardEventHandler<HTMLInputElement>>(
     (e) => {
-      const newTagList = [...tagList];
       if (e.key === "Enter" && tagInput !== "" && !tagList.includes(tagInput)) {
         e.preventDefault();
-        newTagList.push(tagInput);
-        setTagList(newTagList);
+        addTag(tagInput);
         setTagInput("");
-      } else if (tagInput === "" && tagList.length && e.key === "Backspace") {
-        newTagList.pop();
-        setTagList(newTagList);
+      } else if (
+        tagInput === "" &&
+        tagList.length > 0 &&
+        e.key === "Backspace"
+      ) {
+        removeTag(tagList[tagList.length - 1]);
       }
     },
     [tagList, tagInput]
@@ -63,7 +70,7 @@ function HashTagInput() {
   const handleDeleteTag = useCallback(
     (idx: number): MouseEventHandler => {
       return (e) => {
-        setTagList(tagList.filter((tag, i) => i !== idx));
+        removeTag(tagList[idx]);
       };
     },
     [tagList]
@@ -92,4 +99,4 @@ function HashTagInput() {
   );
 }
 
-export default HashTagInput;
+export default HashTagList;

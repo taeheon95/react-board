@@ -5,6 +5,7 @@ function Container() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [tagList, setTagList] = useState<string[]>([]);
+
   const onChangeTitle = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
       setTitle(e.target.value);
@@ -17,12 +18,14 @@ function Container() {
     },
     []
   );
+
   const addTag = useCallback((tag: string) => {
     setTagList((prevState) => prevState.concat(tag));
   }, []);
   const removeTag = useCallback((tag: string) => {
     setTagList((prevState) => prevState.filter((existTag) => existTag !== tag));
   }, []);
+
   return (
     <Presenter
       title={title}

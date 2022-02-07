@@ -1,11 +1,19 @@
 import React, { ComponentType, useEffect } from "react";
 
 function logHoc<Props>(WrappedComponent: ComponentType<Props>) {
-  return function AopHoc(props: Props) {
+  return function LogHoc(props: Props) {
     useEffect(() => {
-      console.log("Current Props: ", props);
+      console.log(
+        "%c Current Props : ",
+        "color:#009ff2;font-weight:bold",
+        props
+      );
       return () => {
-        console.log("Previous props: ", props);
+        console.log(
+          "%c Previous props : ",
+          "color:#43a547;font-weight:bold",
+          props
+        );
       };
     }, [props]);
     return <WrappedComponent {...props} />;

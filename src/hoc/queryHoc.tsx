@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { QueryKey, useQuery, UseQueryOptions } from "react-query";
 
-interface componentProps<T> {
+interface componentProps<queryExpect> {
   [key: string]: unknown;
-  queryResult?: T;
+  queryResult?: queryExpect;
 }
 
 function queryHoc<queryResultType>(
