@@ -28,7 +28,11 @@ function WritePresenter(props: PresenterProps) {
     <>
       <Form.Group className="mb-4">
         <Form.Label>제목</Form.Label>
-        <FormControl value={title} onChange={onChangeTitle} />
+        <FormControl
+          value={title}
+          onChange={onChangeTitle}
+          placeholder="제목을 입력해주세요."
+        />
       </Form.Group>
       <Form.Group className="mb-4">
         <Form.Label>태그</Form.Label>
@@ -54,7 +58,7 @@ function WritePresenter(props: PresenterProps) {
         </InputGroup>
       </Form.Group>
       <Form.Group className="mb-4">
-        <Button>저장</Button>
+        <Button>등록</Button>
         &nbsp;
         <Button variant="secondary">취소</Button>
       </Form.Group>
