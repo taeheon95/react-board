@@ -1,8 +1,8 @@
 import React from "react";
-import Container from "./Container";
+import WriteContainer from "./WriteContainer";
 
 function Write() {
-  return <Container />;
+  return <WriteContainer />;
 }
 
 export default Write;

@@ -14,7 +14,7 @@ interface PresenterProps {
   removeTag: (tag: string) => void;
 }
 
-function Presenter(props: PresenterProps) {
+function WritePresenter(props: PresenterProps) {
   const {
     title,
     content,
@@ -62,4 +62,4 @@ function Presenter(props: PresenterProps) {
   );
 }
 
-export default logHoc<PresenterProps>(Presenter);
+export default logHoc<PresenterProps>(WritePresenter);

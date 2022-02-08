@@ -1,7 +1,18 @@
-import React, { ChangeEventHandler, useCallback, useState } from "react";
-import Presenter from "./Presenter";
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useState,
+} from "react";
+import Presenter from "./WritePresenter";
 
-function Container() {
+interface Board {
+  title: string;
+  content: string;
+  tagList: string[];
+}
+
+function WriteContainer() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [tagList, setTagList] = useState<string[]>([]);
@@ -19,11 +30,19 @@ function Container() {
     []
   );
 
-  const addTag = useCallback((tag: string) => {
+  const addTag = useCallback<(tag: string) => void>((tag: string) => {
     setTagList((prevState) => prevState.concat(tag));
   }, []);
-  const removeTag = useCallback((tag: string) => {
+  const removeTag = useCallback<(tag: string) => void>((tag: string) => {
     setTagList((prevState) => prevState.filter((existTag) => existTag !== tag));
+  }, []);
+
+  const addBoard = useCallback<MouseEventHandler<HTMLButtonElement>>((e) => {
+    const board: Board = {
+      title,
+      content,
+      tagList,
+    };
   }, []);
 
   return (
@@ -39,4 +58,4 @@ function Container() {
   );
 }
 
-export default Container;
+export default WriteContainer;
